@@ -217,8 +217,20 @@ const Market = () => {
                                 </div>
                             ))
                         ) : (
-                            <div className="no-results">
-                                <p>No mandi records found for "{search}". Try another crop.</p>
+                            <div className="no-results glass-card animate-pulse-slow">
+                                <HiTrendingUp className="no-results-icon" />
+                                <h3>No Data Found</h3>
+                                <p>
+                                    {search 
+                                        ? `We couldn't find any mandi records for "${search}".`
+                                        : `No live mandi records available for ${stats.location === 'Live Pan-India Markets' ? 'all of India' : stats.location}.`}
+                                </p>
+                                <button className="retry-btn" onClick={() => {
+                                    if (viewMode === 'location') setViewMode('pan-india');
+                                    else fetchMarketData('');
+                                }}>
+                                    {viewMode === 'location' ? 'Show All India Data' : 'Refresh Market Data'}
+                                </button>
                             </div>
                         )}
                     </div>

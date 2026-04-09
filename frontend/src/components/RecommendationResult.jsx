@@ -4,12 +4,56 @@ import { useTranslation } from 'react-i18next';
 import PricePredictor from './PricePredictor';
 import './RecommendationResult.css';
 
+// Client-side fallback: derive risk breakdown from known crop metadata
+const CROP_RISK_META = {
+  Cotton: { water: 'Medium', duration: 'Long', volatility: 'High', perishability: 'Low' },
+  Rice: { water: 'High', duration: 'Medium', volatility: 'Low', perishability: 'Low' },
+  Wheat: { water: 'Medium', duration: 'Medium', volatility: 'Low', perishability: 'Low' },
+  Maize: { water: 'Medium', duration: 'Short', volatility: 'Medium', perishability: 'Low' },
+  Tomato: { water: 'Medium', duration: 'Short', volatility: 'Very High', perishability: 'High' },
+  Onion: { water: 'Low', duration: 'Medium', volatility: 'High', perishability: 'Medium' },
+  Potato: { water: 'Medium', duration: 'Short', volatility: 'High', perishability: 'Medium' },
+  Soybean: { water: 'Low', duration: 'Short', volatility: 'Medium', perishability: 'Low' },
+  Sugarcane: { water: 'High', duration: 'Long', volatility: 'Low', perishability: 'Medium' },
+  Arhar: { water: 'Low', duration: 'Long', volatility: 'Low', perishability: 'Low' },
+  Banana: { water: 'High', duration: 'Long', volatility: 'Medium', perishability: 'High' },
+  Turmeric: { water: 'Medium', duration: 'Long', volatility: 'Low', perishability: 'Low' },
+};
+
+const WATER_REASON = { High: 'Needs a reliable irrigation source or heavy monsoon', Medium: 'Moderate irrigation required', Low: 'Water-efficient, suitable for rainfed farming' };
+const DURATION_REASONS = { 'Long': 'Long growing period = delayed income & prolonged weather exposure', 'Medium': 'Moderate growing cycle', 'Short': 'Quick harvest cycle reduces climate risk' };
+const VOL_REASONS = { 'Very High': 'Prices can crash severely (e.g. Tomato glut years)', 'High': 'Significant market price swings expected', 'Medium': 'Moderate price fluctuations, manageable with storage', 'Low': 'Stable MSP-backed pricing from government' };
+const PERISH_REASONS = { 'High': 'Spoils quickly — needs cold storage or fast market access', 'Medium': 'Has limited shelf life, requires prompt selling', 'Low': 'Can be stored for months, flexible selling timeline' };
+
+const impactOf = (factor, val) => {
+  if (factor === 'water') return val === 'High' ? 'negative' : val === 'Low' ? 'positive' : 'neutral';
+  if (factor === 'duration') return val === 'Long' ? 'negative' : val === 'Short' ? 'positive' : 'neutral';
+  if (factor === 'volatility') return val === 'Very High' || val === 'High' ? 'negative' : val === 'Low' ? 'positive' : 'neutral';
+  if (factor === 'perishability') return val === 'High' ? 'negative' : val === 'Low' ? 'positive' : 'neutral';
+  return 'neutral';
+};
+
+const getRiskBreakdown = (data) => {
+  // Prefer server-sent breakdown
+  if (data.risk_breakdown && data.risk_breakdown.length > 0) return data.risk_breakdown;
+  // Generate client-side fallback from crop metadata
+  const crop = data.recommended_crop || '';
+  const meta = CROP_RISK_META[crop] || { water: 'Medium', duration: 'Medium', volatility: 'Medium', perishability: 'Low' };
+  return [
+    { factor: 'Water Requirement', value: meta.water, impact: impactOf('water', meta.water), reason: WATER_REASON[meta.water] || '' },
+    { factor: 'Crop Duration', value: meta.duration === 'Long' ? 'Long (6+ months)' : meta.duration === 'Short' ? 'Short (<3 months)' : 'Medium (3-6 months)', impact: impactOf('duration', meta.duration), reason: DURATION_REASONS[meta.duration] || '' },
+    { factor: 'Price Volatility', value: meta.volatility, impact: impactOf('volatility', meta.volatility), reason: VOL_REASONS[meta.volatility] || '' },
+    { factor: 'Perishability', value: meta.perishability, impact: impactOf('perishability', meta.perishability), reason: PERISH_REASONS[meta.perishability] || '' },
+  ];
+};
+
 const RecommendationResult = ({ data }) => {
   const { t, i18n } = useTranslation();
   const [isAnalysisExpanded, setIsAnalysisExpanded] = useState(false);
   const [geminiReport, setGeminiReport] = useState(null);
   const [reportLanguage, setReportLanguage] = useState('en');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [riskExpanded, setRiskExpanded] = useState(false);
 
   useEffect(() => {
     if (data && data.recommended_crop) {
@@ -194,15 +238,43 @@ const RecommendationResult = ({ data }) => {
           <div className="detail-subtext">{t('anl_soil_asmnt')}</div>
         </div>
 
-        <div className="detail-card">
+        <div className="detail-card risk-detail-card" style={{ cursor: 'pointer' }} onClick={() => setRiskExpanded(r => !r)}>
           <h4>⚠️ {t('anl_risk')}</h4>
           <div className="detail-value" style={{
-            color: data.risk_factor.includes('High') ? '#ff6b6b' :
-              data.risk_factor.includes('Moderate') ? '#ffa500' : '#51cf66'
+            color: data.risk_factor?.includes('High') ? '#ff6b6b' :
+              data.risk_factor?.includes('Moderate') ? '#ffa500' : '#51cf66'
           }}>
             {data.risk_factor}
           </div>
-          <div className="detail-subtext">{t('anl_risk_asmnt')}</div>
+          <div className="detail-subtext">{riskExpanded ? 'Click to collapse ▲' : 'Click for breakdown ▼'}</div>
+
+          {riskExpanded && (
+            <div className="risk-breakdown" style={{ marginTop: '12px', width: '100%' }}>
+              {getRiskBreakdown(data).map((item, idx) => (
+                <div key={idx} style={{
+                  display: 'flex', flexDirection: 'column', gap: '2px',
+                  padding: '8px 10px', borderRadius: '8px', marginBottom: '6px',
+                  background: item.impact === 'negative' ? '#fff3f3' : item.impact === 'positive' ? '#f0fff4' : '#fafafa',
+                  border: `1px solid ${item.impact === 'negative' ? '#ffcdd2' : item.impact === 'positive' ? '#c8e6c9' : '#e0e0e0'}`
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <strong style={{ fontSize: '0.78rem', color: '#333' }}>{item.factor}</strong>
+                    <span style={{
+                      fontSize: '0.7rem', fontWeight: 'bold', padding: '2px 8px', borderRadius: '12px',
+                      background: item.impact === 'negative' ? '#ffcdd2' : item.impact === 'positive' ? '#c8e6c9' : '#eeeeee',
+                      color: item.impact === 'negative' ? '#c62828' : item.impact === 'positive' ? '#2e7d32' : '#555'
+                    }}>{item.value}</span>
+                  </div>
+                  <p style={{ fontSize: '0.74rem', color: '#666', margin: '2px 0 0 0' }}>{item.reason}</p>
+                </div>
+              ))}
+              {data.risk_score !== undefined && (
+                <div style={{ marginTop: '6px', fontSize: '0.75rem', color: '#888', textAlign: 'right' }}>
+                  Risk Score: {data.risk_score}/10
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="detail-card">

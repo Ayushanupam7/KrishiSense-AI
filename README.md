@@ -1,111 +1,128 @@
-# 🌾 KrishiSense AI - Smart Data-Driven Farming Platform
 
-An intelligent, AI-powered decision support system designed to help farmers optimize their crop selection, maximize market profitability, and engage with a collaborative agricultural community.
+
+# 🌾 KrishiSense AI
+
+### *Smart Data-Driven Farming Platform*
+
+**Developed for AIXplore Hackathon | Tulsiramji Gaikwad-Patil College of Engineering, Nagpur**
+
+[](https://opensource.org/licenses/MIT)
+[](https://www.python.org/downloads/)
+[](https://reactjs.org/)
+[](https://fastapi.tiangolo.com/)
+
+KrishiSense AI is an intelligent, AI-powered decision support system designed to help farmers optimize crop selection, maximize profitability, and build a collaborative agricultural ecosystem. We aim to bring AI to the roots of India, transforming raw data into actionable intelligence.
+
+-----
 
 ## 🎯 Key Features
 
-- **🤖 Intelligent Crop Recommendation Engine**: A risk-aware ML model (Random Forest) that processes user-provided soil metrics (NPK), irrigation status, and real-time weather. It features strict seasonal filtering (Kharif vs. Rabi) and intelligent fallback logic to minimize risks when ML confidence is low.
-- **💰 Advanced Market Intelligence**: Real-time Mandi price analysis with crop-specific harvest cycle predictions, robust price flooring, and toggleable regional vs. Pan-India views. Includes deep-dive AI market reports for complete transparency.
-- **📱 Farmer Community Dashboard**: A premium, responsive social feed allowing farmers to share insights. Includes interactive post cards, inline commenting, dynamic crop-based filtering, and smooth-scroll navigation.
-- **✨ Step-by-Step AI Visualization**: A transparent user experience that visually breaks down the backend processing logic (soil analysis $\rightarrow$ climate $\rightarrow$ market $\rightarrow$ final recommendation).
-- **🌓 Premium UI & Dark Mode**: A state-of-the-art frontend featuring a comprehensive dark mode, dynamic micro-animations, glassmorphism aesthetics, and a mobile-first philosophy.
-- **🌐 Localization & Offline Support**: Multi-lingual interface (Hindi, Marathi, English) with voice input support (Web Speech API) and cached offline capabilities.
+  * **🤖 Intelligent Crop Recommendation:** A risk-aware Random Forest ML model analyzing NPK levels, irrigation, and real-time weather with strict Kharif/Rabi seasonal filtering.
+  * **💰 Advanced Market Intelligence:** Real-time mandi price insights with harvest cycle predictions and Pan-India price comparisons.
+  * **📱 Farmer Community Dashboard:** A modern social feed for farmers to share insights, experience, and posts with an interactive UI.
+  * **✨ Step-by-Step AI Visualization:** A transparent "Glass Box" approach: Soil → Climate → Market → Final Recommendation.
+  * **🌓 Premium UI & Dark Mode:** Sleek Glassmorphism design with smooth animations and mobile-first responsiveness.
+  * **🌐 Localization & Offline Support:** Multi-language support (Hindi, Marathi, English) and voice input for accessibility.
+
+-----
 
 ## 🏗️ System Architecture
 
-```text
-User Input (React UI / Voice / Sensor Data)
-    ↓
-Language Translation & Processing
-    ↓
-Backend Decision Engine (FastAPI)
-    ├── Soil & NPK Unit Normalization
-    ├── Real-Time Weather Integration
-    └── Mandi Market Data & Price Forecasting
-    ↓
-ML Model (Random Forest Crop Predictor)
-    ↓
-Risk-Aware Profit & Seasonal Filtering (Kharif/Rabi)
-    ↓
-Step-by-step Visual Analysis Output
-    ↓
-Result Delivery (Responsive UI / Voice / Text)
+```mermaid
+graph TD
+    A[User Input: React UI / Voice / Sensors] --> B[Language Translation & Processing]
+    B --> C[Backend Decision Engine: FastAPI]
+    C --> D{ML Model: Random Forest}
+    D --> E[Soil & NPK Normalization]
+    D --> F[Weather API Integration]
+    D --> G[Mandi Market Analysis]
+    E & F & G --> H[Risk-Aware Filtering: Season + Profit]
+    H --> I[Step-by-Step Visual Output]
+    I --> J[Frontend Response: UI / Voice]
 ```
+
+-----
 
 ## 💻 Tech Stack
 
 | Component | Technology |
-|-----------|-----------|
-| **Frontend** | React.js, Context API (Theme Management), Vanilla CSS |
-| **Backend** | Python FastAPI |
-| **AI/ML Engine** | scikit-learn, Random Forest |
-| **Database & Auth** | Firebase (Firestore, Auth, Storage) |
-| **Integrations** | Weather API, Agmarknet (Mandi Data), Web Speech API |
+| :--- | :--- |
+| **Frontend** | React.js, Context API, CSS (Glassmorphism) |
+| **Backend** | FastAPI (Python) |
+| **AI/ML** | scikit-learn (Random Forest) |
+| **Database** | Firebase (Firestore, Auth, Storage) |
+| **APIs** | OpenWeather API, Agmarknet |
+| **Features** | Web Speech API, Offline Caching |
+
+-----
+
+## 🧠 Decision Logic & Risk Assessment
+
+KrishiSense AI ensures reliable recommendations using a weighted scoring system:
+
+$$Final Score = S_{soil} + C_{climate} + W_{water} + V_{season} + P_{market}$$
+
+> **Note:** If the model confidence falls below a specific threshold, the system triggers a "Safety Fallback" to avoid risky recommendations for the farmer.
+
+-----
 
 ## 🚀 Quick Start
 
-### Backend Environment
+### 🔧 Backend Setup
+
 ```bash
 cd backend
 pip install -r requirements.txt
 python main.py
 ```
 
-### Frontend Environment
+### 🎨 Frontend Setup
+
 ```bash
 cd frontend
 npm install
 npm start
 ```
 
-### ML Model Training
+### 🧠 Train ML Model
+
 ```bash
 cd ml_model
 python train_model.py
 ```
 
+-----
+
 ## 📂 Project Structure
 
 ```text
 KrishiSense AI/
-├── backend/              # FastAPI server (Endpoints, Decision Engine)
-│   ├── main.py
-│   ├── requirements.txt
-│   ├── config.py
-│   ├── models.py
-│   └── services/         # MandiService, WeatherService, etc.
-├── frontend/             # React App (Themeable, Mobile-first)
-│   ├── public/
-│   ├── src/              # Components, Context, Pages (Community, Dashboard)
-│   └── package.json
-├── ml_model/             # Scikit-learn Pipelines
-│   ├── train_model.py
-│   ├── crop_predictor.py
-│   └── model_data/
-├── data/                 # Training sets & Reference metadata
+├── backend/           # FastAPI routes & business logic
+├── frontend/          # React components & UI
+├── ml_model/          # Training scripts & exported models
+├── data/              # Datasets for NPK and Mandi prices
 └── README.md
 ```
 
-## 🔄 Decision Logic & Risk Assessment
+-----
 
-KrishiSense AI doesn't just guess; it evaluates tradeoffs:
-```text
-Final Recommendation Metric =
-  (ML Soil & Climate Suitability Weight)
-+ (Irrigation & Water Requirement Match)
-+ (Seasonal Suitability: Kharif/Rabi)
-+ (Market Profitability Rank & Price Volatility)
-```
-*Note: The platform features dynamic safety thresholds. It actively suppresses recommendations when analytical confidence falls beneath pre-defined limits, ensuring highly reliable, farmer-first advice.*
+## 🎤 Hackathon Pitch
 
-## 🎤 Hackathon Pitch & Value Proposition
+> “KrishiSense AI transforms agricultural data into actionable intelligence. By combining soil analysis, weather insights, and market predictions, we empower farmers to make smarter, safer, and more profitable decisions. From soil to solution, from data to decisions — we build for those who feed the nation.”
 
-> *"KrishiSense AI transforms raw agricultural data into actionable, risk-aware decisions. By compounding soil analysis with real-time weather, harvest cycle market predictions, and a collaborative knowledge-sharing community, we are building a localized, resilient ecosystem for the modern Indian farmer."*
+-----
+
+## 👨‍💻 The Team
+
+  * **Ayush Anupam** – AIML, 3rd Year
+  * **Sanket Bhende** – CSE, 2nd Year
+  * **Avijeet Jha** – CSE, 3rd Year
+  * **Vipul Pradesi** – 2nd Year
+
+-----
 
 ## 📝 License
 
-MIT License
+Distributed under the MIT License. See `LICENSE` for more information.
 
----
-
-**Made with 🌾 for Indian Farmers**
+**Built with ❤️ at TGPCET, Nagpur**

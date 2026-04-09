@@ -142,7 +142,9 @@ async def recommend_crop(request: CropRecommendationRequest):
         profit_analysis = await mandi_service.get_profit_analysis(
             SUPPORTED_CROPS, 
             request.location.state,
-            request.location.district
+            request.location.district,
+            request.weather.temperature,
+            request.weather.rainfall
         )
 
         # 8. ML Prediction (Real Model)
@@ -246,22 +248,52 @@ async def recommend_crop(request: CropRecommendationRequest):
             if not meta: return "Medium Risk"
             
             score = 0
-            if meta.get("water") == "High": score += 2
-            if meta.get("duration") == "Long": score += 2
-            
-            # Volatility & Perishability are major risk factors for farmers
+            breakdown = []
+
+            water = meta.get("water", "Low")
+            if water == "High":
+                score += 2
+                breakdown.append({"factor": "Water Requirement", "value": "High", "impact": "negative", "reason": "Needs a reliable irrigation source or heavy monsoon"})
+            else:
+                breakdown.append({"factor": "Water Requirement", "value": water, "impact": "positive", "reason": "Water-efficient, suitable for rainfed farming"})
+
+            duration = meta.get("duration", "Short")
+            if duration == "Long":
+                score += 2
+                breakdown.append({"factor": "Crop Duration", "value": "Long (6+ months)", "impact": "negative", "reason": "Long growing period = delayed income & prolonged weather exposure"})
+            elif duration == "Medium":
+                breakdown.append({"factor": "Crop Duration", "value": "Medium (3-6 months)", "impact": "neutral", "reason": "Moderate growing cycle"})
+            else:
+                breakdown.append({"factor": "Crop Duration", "value": "Short (<3 months)", "impact": "positive", "reason": "Quick harvest cycle reduces climate risk"})
+
             vol = meta.get("volatility", "Low")
-            if vol == "Very High": score += 5
-            elif vol == "High": score += 3
-            elif vol == "Medium": score += 1
-            
+            if vol == "Very High":
+                score += 5
+                breakdown.append({"factor": "Price Volatility", "value": "Very High", "impact": "negative", "reason": "Prices can crash severely (e.g. Tomato glut years)"})
+            elif vol == "High":
+                score += 3
+                breakdown.append({"factor": "Price Volatility", "value": "High", "impact": "negative", "reason": "Significant market price swings expected"})
+            elif vol == "Medium":
+                score += 1
+                breakdown.append({"factor": "Price Volatility", "value": "Medium", "impact": "neutral", "reason": "Moderate price fluctuations, manageable with storage"})
+            else:
+                breakdown.append({"factor": "Price Volatility", "value": "Low", "impact": "positive", "reason": "Stable MSP-backed pricing from government"})
+
             perish = meta.get("perishability", "Low")
-            if perish == "High": score += 3
-            elif perish == "Medium": score += 1
-            
-            if score >= 5: return "High Risk"
-            if score >= 3: return "Moderate Risk"
-            return "Low Risk"
+            if perish == "High":
+                score += 3
+                breakdown.append({"factor": "Perishability", "value": "High", "impact": "negative", "reason": "Spoils quickly — needs cold storage or fast market access"})
+            elif perish == "Medium":
+                score += 1
+                breakdown.append({"factor": "Perishability", "value": "Medium", "impact": "neutral", "reason": "Has limited shelf life, requires prompt selling"})
+            else:
+                breakdown.append({"factor": "Perishability", "value": "Low", "impact": "positive", "reason": "Can be stored for months, flexible selling timeline"})
+
+            if score >= 5: label = "High Risk"
+            elif score >= 3: label = "Moderate Risk"
+            else: label = "Low Risk"
+
+            return label, score, breakdown
 
 
         # 10. Season and Irrigation Filtering (MANDATORY Rules)
@@ -364,7 +396,7 @@ async def recommend_crop(request: CropRecommendationRequest):
         final_recommended_crop = final_recommended_crop.capitalize()
         
         # 12. Risk for recommended crop
-        risk_factor = calculate_risk(final_recommended_crop)
+        risk_factor, risk_score, risk_breakdown = calculate_risk(final_recommended_crop)
 
         # 13. Smart Alternative Ranking (Basis: Soil/Weather ML + Market + Irrigation)
         alternative_crops = []
@@ -397,7 +429,7 @@ async def recommend_crop(request: CropRecommendationRequest):
                 "profit": data["estimated_profit_per_acre"],
                 "profit_margin": data["profit_margin_percent"],
                 "score": total_score,
-                "risk": calculate_risk(crop_cap),
+                "risk": calculate_risk(crop_cap)[0],
                 "water": water_req
             })
             
@@ -475,6 +507,8 @@ async def recommend_crop(request: CropRecommendationRequest):
             "soil_quality": soil_quality,
             "weather_conditions": weather.get("weather_desc", "Clear"),
             "risk_factor": risk_factor,
+            "risk_score": risk_score,
+            "risk_breakdown": risk_breakdown,
             "descriptive_analysis": analysis
         }
 

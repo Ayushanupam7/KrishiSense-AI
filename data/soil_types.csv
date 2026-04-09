@@ -1,0 +1,6 @@
+soil_type,soil_code,pH_range_min,pH_range_max,texture,nitrogen_level,phosphorus_level,potassium_level,organic_matter_percent,best_for_crops,rainfall_suitability,regions
+Alluvial,0,6.5,7.5,Loamy,Medium,Medium,Medium,3-5,"Rice, Wheat, Sugarcane, Cotton",150-300,North India (Indo-Gangetic Plain)
+Black,1,7.5,8.5,Clay,Low,Low,High,0.5-2,"Cotton, Sugarcane, Jowar",50-100,Central India (Deccan Plateau)
+Red,2,5.5,6.5,Sandy to Loamy,Low,Low,Medium,1-3,"Groundnut, Millets, Pulses",50-150,South India
+Laterite,3,4.5,5.5,Clay-loam,Very Low,Low,Medium,2-4,"Tea, Coffee, Spices",200-300,Western Ghats
+Sandy,4,6.0,7.0,Sandy,Very Low,Very Low,Low,0.5-1,"Millets, Groundnut, Sesamum",20-80,Arid and Semi-arid regions

@@ -1,0 +1,76 @@
+{
+  "folders": [
+    {
+      "path": "backend",
+      "name": "Backend (FastAPI)"
+    },
+    {
+      "path": "frontend",
+      "name": "Frontend (React)"
+    },
+    {
+      "path": "ml_model",
+      "name": "ML Model"
+    }
+  ],
+  "settings": {
+    "python.defaultInterpreterPath": "${workspaceFolder:Backend (FastAPI)}/venv/bin/python",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "editor.formatOnSave": true,
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.python",
+      "editor.formatOnSave": true
+    },
+    "[javascript]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/node_modules": true,
+      "**/.pytest_cache": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.venv": true,
+      "**/__pycache__": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "madelynned.eslint-plugin-react",
+      "esbenp.prettier-vscode",
+      "charliermarsh.ruff",
+      "ms-vscode.makefile-tools"
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "FastAPI Backend",
+        "type": "python",
+        "request": "launch",
+        "module": "uvicorn",
+        "args": ["main:app", "--reload"],
+        "jinja": true,
+        "cwd": "${workspaceFolder:Backend (FastAPI)}",
+        "env": {
+          "PYTHON_ENV": "development"
+        },
+        "console": "integratedTerminal"
+      },
+      {
+        "name": "ML Training",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder:ML Model}/train_model.py",
+        "console": "integratedTerminal",
+        "cwd": "${workspaceFolder:ML Model}"
+      }
+    ]
+  }
+}

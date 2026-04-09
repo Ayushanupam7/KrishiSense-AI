@@ -1,0 +1,81 @@
+/* AnalysisSequence.css */
+.analysis-sequence-container {
+  padding: 20px;
+  background: var(--bg-surface);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  margin-top: 20px;
+}
+
+.analysis-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.analysis-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8fbf8;
+  border-radius: 15px;
+  border: 1px solid #e8f5e9;
+  transition: all 0.3s ease;
+  opacity: 0.5;
+  transform: translateY(10px);
+}
+
+.analysis-item.active {
+  opacity: 1;
+  transform: translateY(0);
+  border-color: #4caf50;
+  background: var(--border-light);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.1);
+}
+
+.analysis-item.completed {
+  opacity: 0.8;
+  background: transparent;
+  border-color: #e8f5e9;
+  box-shadow: none;
+}
+
+.analysis-icon {
+  font-size: 2rem;
+  margin-right: 20px;
+}
+
+.analysis-text {
+  flex-grow: 1;
+}
+
+.analysis-text h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.analysis-text p {
+  margin: 5px 0 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.status-icon.success {
+  font-size: 1.5rem;
+  color: #4caf50;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(76, 175, 80, 0.2);
+  border-top: 3px solid #4caf50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

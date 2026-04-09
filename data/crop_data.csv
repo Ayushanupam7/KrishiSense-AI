@@ -1,0 +1,14 @@
+crop_name,optimal_temperature_min,optimal_temperature_max,optimal_rainfall_min,optimal_rainfall_max,optimal_pH_min,optimal_pH_max,season,nitrogen_requirement,phosphorus_requirement,potassium_requirement,typical_yield_per_acre,crop_duration_days
+Rice,20,40,150,300,6.0,7.0,Kharif,0.8,0.4,0.3,50,120
+Wheat,10,30,40,100,6.0,8.0,Rabi,0.6,0.3,0.2,45,120
+Maize,15,35,50,100,5.5,7.5,Kharif,0.8,0.4,0.3,25,90
+Cotton,20,40,50,200,5.5,8.0,Kharif,0.9,0.5,0.4,15,160
+Sugarcane,20,40,100,250,5.5,8.5,Zaid,1.2,0.6,0.8,600,360
+Potato,15,25,50,200,5.5,7.5,Rabi,0.7,0.4,0.9,150,90
+Onion,15,30,40,150,6.0,7.8,Rabi,0.6,0.3,0.3,100,120
+Tomato,20,35,50,200,6.0,7.0,Zaid,0.8,0.4,0.4,250,90
+Chilli,20,35,20,100,5.5,7.5,Rabi,0.6,0.35,0.3,15,150
+Turmeric,20,35,150,250,5.5,7.5,Kharif,0.5,0.3,0.2,20,240
+Soybean,20,35,50,150,6.0,8.0,Kharif,0.9,0.3,0.3,18,100
+Arhar,20,35,50,150,5.5,8.0,Kharif,0.7,0.2,0.2,18,240
+Urad,20,35,50,150,5.5,8.0,Kharif,0.7,0.2,0.2,15,100

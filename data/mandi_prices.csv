@@ -1,0 +1,14 @@
+crop_name,market_price_inr_per_quintal,profit_margin_percent,storage_days,mandi_name,state,last_updated_date
+Rice,3200,25,30,Azadpur Mandi,Delhi,2026-04-01
+Wheat,2800,22,60,IAMWB Mumbai,Maharashtra,2026-04-01
+Maize,2200,28,45,Pune Mandi,Maharashtra,2026-04-01
+Cotton,5800,35,90,Parbhani Mandi,Maharashtra,2026-04-01
+Sugarcane,380,40,30,Belgaum Mandi,Karnataka,2026-04-01
+Potato,2400,45,120,Lasalgaon Mandi,Maharashtra,2026-04-01
+Onion,2000,50,150,Lasalgaon Mandi,Maharashtra,2026-04-01
+Tomato,2600,55,15,Vashi Mandi,Maharashtra,2026-04-01
+Chilli,8500,60,90,Warangal Mandi,Telangana,2026-04-01
+Turmeric,12000,65,180,Nizamabad Mandi,Telangana,2026-04-01
+Soybean,5200,30,60,Indore Mandi,Madhya Pradesh,2026-04-01
+Arhar,6500,32,120,Bikaner Mandi,Rajasthan,2026-04-01
+Urad,7200,33,120,Nagpur Mandi,Maharashtra,2026-04-01

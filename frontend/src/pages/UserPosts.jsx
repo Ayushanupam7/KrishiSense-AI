@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
-    HiArrowLeft, HiThumbUp, HiChat, HiHeart, HiClock, HiSearch
+    HiArrowLeft, HiChat, HiHeart, HiClock, HiSearch
 } from 'react-icons/hi';
 import './UserPosts.css';
 

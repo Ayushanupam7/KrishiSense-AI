@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
     HiUser, HiCalendar, HiTranslate, HiSun, HiMoon, HiSearch, 
-    HiAnnotation, HiCheckCircle, HiCamera, HiPencil, HiChevronDown, HiChevronUp,
+    HiAnnotation, HiCheckCircle, HiCamera, HiChevronDown, HiChevronUp,
     HiInformationCircle, HiCode, HiChip, HiLightningBolt, HiTrash, HiChevronRight
 } from 'react-icons/hi';
 import toast, { Toaster } from 'react-hot-toast';

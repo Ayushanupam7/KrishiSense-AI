@@ -40,7 +40,6 @@ export const getCropImage = (cropName) => {
         'Soyabean': 'https://m.media-amazon.com/images/I/41lWSMRXG7L._AC_UF894,1000_QL80_.jpg',
         'cotton': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFp-vtBl5iO2ZpTfGeFoRg85WsMFM6DeaWNg&s',
         'pomegranate': 'https://plantsguru.com/cdn/shop/files/Ripe-Pomegranate-Fruit-on-Tree-Branch.jpg?v=1755687567',
-        'bhindi': 'https://kyssafarms.com/cdn/shop/products/lady-finger.jpg?v=1600955405',
         'Cauliflower': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYNMhsJUynmjd7XRkWp2kpWZ6gNbhSt69fp2hlHy2jsFswt9wXp4bsc6A_Ev_bfESxZ2UBJARpF2KD9EJRENCltH0X9Yw2e_NEuk-NDA&s=10',
 
     };

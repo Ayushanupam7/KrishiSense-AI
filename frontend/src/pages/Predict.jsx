@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import RecommendationForm from '../components/RecommendationForm';
-import RecommendationResult from '../components/RecommendationResult';
 import CurrentWeather from '../components/CurrentWeather';
 import PricePredictor from '../components/PricePredictor';
 import './Home.css';
 
 const Predict = () => {
-  const [result, setResult] = useState(null);
+  const [location, setLocation] = useState(null);
   const [location, setLocation] = useState(null);
   const [liveWeather, setLiveWeather] = useState(null);
 

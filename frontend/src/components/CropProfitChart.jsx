@@ -117,7 +117,7 @@ const CropProfitChart = ({ recommendedCrop, alternativeCrops, estimatedProfit })
         ctx.moveTo(padding.left, padding.top + chartH);
         ctx.lineTo(padding.left + chartW, padding.top + chartH);
         ctx.stroke();
-    }, [JSON.stringify(allCrops)]);
+    }, [alternativeCrops, estimatedProfit, recommendedCrop]);
 
     if (allCrops.length < 2) return null;
 

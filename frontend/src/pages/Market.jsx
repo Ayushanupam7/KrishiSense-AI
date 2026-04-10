@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { HiSearch, HiTrendingUp, HiLocationMarker, HiCalendar, HiArrowUp, HiArrowDown, HiLightningBolt } from 'react-icons/hi';
 import { useTranslation } from 'react-i18next';
@@ -28,7 +28,7 @@ const Market = () => {
         // Sync stats location text with current view
         if (viewMode === 'pan-india') setStats(s => ({ ...s, location: 'All India' }));
         else if (userRegion) setStats(s => ({ ...s, location: userRegion }));
-    }, [viewMode, userRegion, category, district]);
+    }, [viewMode, userRegion, category, district, search]);
 
     const detectLocation = () => {
         if (!navigator.geolocation) return;

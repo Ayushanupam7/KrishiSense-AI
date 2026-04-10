@@ -31,17 +31,6 @@ const Navbar = () => {
       setIsDark(true);
     }
   };
-  
-  const getPageTitle = () => {
-    switch (location.pathname) {
-      case '/': return 'KrishiSense AI';
-      case '/analysis': return 'Farm Analysis';
-      case '/market': return 'Market Mandi';
-      case '/community': return 'Farmer Community';
-      case '/profile': return 'My Profile';
-      default: return 'KrishiSense AI';
-    }
-  };
 
   return (
     <>

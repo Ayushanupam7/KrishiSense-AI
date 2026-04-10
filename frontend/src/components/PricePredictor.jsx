@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { useTranslation } from 'react-i18next';
-import { HiTrendingUp, HiTrendingDown, HiInformationCircle, HiLightBulb } from 'react-icons/hi';
+import { HiTrendingUp, HiTrendingDown, HiLightBulb } from 'react-icons/hi';
 import './PricePredictor.css';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
@@ -64,18 +64,7 @@ const PricePredictor = ({ defaultCrop = 'Onion', state, district }) => {
 
     useEffect(() => {
         fetchPrediction(crop);
-    }, [state, district, isPanIndia]);
-
-    const handleCropChange = (e) => {
-        const val = e.target.value;
-        if (val === 'CUSTOM') {
-            setIsCustom(true);
-        } else {
-            setIsCustom(false);
-            setCrop(val);
-            fetchPrediction(val);
-        }
-    };
+    }, [crop, state, district, isPanIndia]);
 
     const handleCustomSubmit = (e) => {
         if (e.key === 'Enter' && customCrop.trim()) {
@@ -86,7 +75,7 @@ const PricePredictor = ({ defaultCrop = 'Onion', state, district }) => {
 
     const scroll = (direction) => {
         if (scrollRef.current) {
-            const { scrollLeft, clientWidth } = scrollRef.current;
+            const { scrollLeft } = scrollRef.current;
             const scrollTo = direction === 'left' ? scrollLeft - 150 : scrollLeft + 150;
             scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
         }

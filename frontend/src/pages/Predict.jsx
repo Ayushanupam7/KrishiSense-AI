@@ -6,7 +6,6 @@ import './Home.css';
 
 const Predict = () => {
   const [location, setLocation] = useState(null);
-  const [location, setLocation] = useState(null);
   const [liveWeather, setLiveWeather] = useState(null);
 
   return (

@@ -9,7 +9,6 @@ const CurrentWeather = ({ latitude, longitude, state, district, onWeatherUpdate 
   const [weather, setWeather] = useState(null);
   const [fullData, setFullData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isForecastExpanded, setIsForecastExpanded] = useState(false);
   const [canScroll, setCanScroll] = useState({ left: false, right: false });

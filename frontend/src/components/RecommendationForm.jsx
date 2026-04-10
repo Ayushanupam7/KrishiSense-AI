@@ -38,7 +38,7 @@ const RecommendationForm = ({ onRecommendation, onLocationUpdate, externalWeathe
 
   useEffect(() => {
     detectUserLocation();
-  }, []);
+  }, [onLocationUpdate]);
 
   const detectUserLocation = () => {
     if (navigator.geolocation) {

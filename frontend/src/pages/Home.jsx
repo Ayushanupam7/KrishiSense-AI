@@ -57,7 +57,7 @@ const Home = () => {
                 }
             }
         }
-    }, [location]);
+    }, [location, lastUpdatedMarket, marketData.length]);
 
     const fetchLocalMarket = async (state, district) => {
         setLoadingMarket(true);

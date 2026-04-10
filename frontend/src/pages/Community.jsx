@@ -4,7 +4,7 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import {
     HiPencil, HiHeart, HiShare, HiAnnotation, HiFilter,
-    HiPhotograph, HiX, HiPaperAirplane, HiThumbUp, HiDotsVertical
+    HiPhotograph, HiX, HiPaperAirplane
 } from 'react-icons/hi';
 import './Community.css';
 
@@ -68,7 +68,6 @@ const Community = () => {
     const [selectedCrop, setSelectedCrop] = useState('All');
     const [isPostModalOpen, setIsPostModalOpen] = useState(false);
     const [newPostContent, setNewPostContent] = useState('');
-    const [newPostTitle, setNewPostTitle] = useState('');
     const [newPostCrop, setNewPostCrop] = useState('General');
     const [newPostImage, setNewPostImage] = useState('');
     const [expandedPostId, setExpandedPostId] = useState(null);

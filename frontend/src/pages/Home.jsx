@@ -5,6 +5,7 @@ import { HiArrowLeft, HiArrowRight, HiRefresh } from 'react-icons/hi';
 import { useTranslation } from 'react-i18next';
 import CurrentWeather from '../components/CurrentWeather';
 import RecommendationForm from '../components/RecommendationForm';
+import LiveStatsTicker from '../components/LiveStatsTicker';
 import { getCropImage } from '../utils/cropImages';
 import './Home.css';
 
@@ -31,10 +32,10 @@ const Home = () => {
     const scroll = (direction) => {
         if (scrollRef.current) {
             const { scrollLeft, clientWidth } = scrollRef.current;
-            const scrollTo = direction === 'left' 
-                ? scrollLeft - clientWidth * 0.8 
+            const scrollTo = direction === 'left'
+                ? scrollLeft - clientWidth * 0.8
                 : scrollLeft + clientWidth * 0.8;
-            
+
             scrollRef.current.scrollTo({
                 left: scrollTo,
                 behavior: 'smooth'
@@ -45,11 +46,11 @@ const Home = () => {
     useEffect(() => {
         if (location) {
             localStorage.setItem('ks_location', JSON.stringify(location));
-            
+
             // Check cache age for market data (15 mins)
             const now = new Date();
             const cacheAge = lastUpdatedMarket ? (now - lastUpdatedMarket) / 1000 / 60 : 999;
-            
+
             if (marketData.length === 0 || cacheAge > 15) {
                 if (location.state || location.district) {
                     fetchLocalMarket(location.state, location.district);
@@ -106,6 +107,7 @@ const Home = () => {
             </section>
 
             <main className="main-platform container">
+                <LiveStatsTicker />
                 {/* 1. Localized Weather (First) */}
                 {location && (
                     <div className="weather-overview-section animate-fade-in section-group">
@@ -131,14 +133,14 @@ const Home = () => {
                                     {location.district && <span className="state-sub">, {location.state}</span>}
                                     {lastUpdatedMarket && (
                                         <span className="market-updated-label">
-                                             {t('home_last_updated')}{lastUpdatedMarket.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}
+                                            {t('home_last_updated')}{lastUpdatedMarket.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}
                                         </span>
                                     )}
                                 </h2>
                                 <div className="scroll-controls">
-                                    <button 
-                                        className={`scroll-btn refresh-btn ${loadingMarket ? 'spinning' : ''}`} 
-                                        onClick={handleMarketRefresh} 
+                                    <button
+                                        className={`scroll-btn refresh-btn ${loadingMarket ? 'spinning' : ''}`}
+                                        onClick={handleMarketRefresh}
                                         aria-label="Refresh Market"
                                         disabled={loadingMarket}
                                     >
@@ -191,14 +193,14 @@ const Home = () => {
 
                 {/* 3. Core Platforms (Third) */}
                 <div className="platform-grid section-group">
-                     <div className="glass-card feature-box" onClick={() => navigate('/market')}>
-                        <div className="feat-icon">📈</div>
+                    <div className="glass-card feature-box" onClick={() => navigate('/market')}>
+                        <div className="feat-icon">Graph</div>
                         <h3>{t('home_feat1_title')}</h3>
                         <p>{t('home_feat1_desc')}</p>
                         <div className="feat-arrow"><HiArrowRight /></div>
                     </div>
                     <div className="glass-card feature-box prediction-highlight" onClick={() => navigate('/analysis')}>
-                        <div className="feat-icon">🌾</div>
+                        <div className="feat-icon">Advisior</div>
                         <h3>{t('home_feat2_title')}</h3>
                         <p>{t('home_feat2_desc')}</p>
                         <div className="feat-arrow"><HiArrowRight /></div>

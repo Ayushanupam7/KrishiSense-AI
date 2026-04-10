@@ -1,0 +1,167 @@
+.crop-calendar-widget {
+    background: var(--bg-surface);
+    border-radius: 24px;
+    padding: 24px;
+    margin: 28px 0;
+    border: 1px solid rgba(33, 150, 243, 0.1);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+}
+
+.cal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cal-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.cal-icon {
+    font-size: 1.2rem;
+}
+
+.cal-season-badge {
+    background: #e3f2fd;
+    color: #1565c0;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sow-alert {
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+}
+
+.sow-now {
+    background: #e8f5e9;
+    color: #1b5e20;
+    border: 1px solid #c8e6c9;
+    animation: sow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes sow-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.3); }
+    50% { box-shadow: 0 0 0 6px rgba(76, 175, 80, 0); }
+}
+
+.sow-soon {
+    background: #fff3e0;
+    color: #e65100;
+    border: 1px solid #ffe0b2;
+}
+
+.sow-later {
+    background: #f3e5f5;
+    color: #6a1b9a;
+    border: 1px solid #e1bee7;
+}
+
+.cal-months-row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.cal-month {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 4px;
+    border-radius: 12px;
+    border: 1.5px solid transparent;
+    background: rgba(0,0,0,0.02);
+    transition: all 0.2s ease;
+    position: relative;
+    cursor: default;
+}
+
+.cal-month.has-phase {
+    border-width: 1.5px;
+}
+
+.cal-month.current-month {
+    box-shadow: 0 0 0 2px #2196f3;
+}
+
+.cal-month:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+.cal-month-emoji {
+    font-size: 1rem;
+    height: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.cal-month-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.current-indicator {
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #2196f3;
+}
+
+.cal-legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}
+
+.current-dot {
+    background: #2196f3;
+    border-radius: 50%;
+}
+
+@media (max-width: 600px) {
+    .cal-months-row {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .cal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}

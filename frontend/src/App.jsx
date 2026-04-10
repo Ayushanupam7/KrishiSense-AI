@@ -7,6 +7,7 @@ import Community from './pages/Community';
 import Profile from './pages/Profile';
 import UserPosts from './pages/UserPosts';
 import Navbar from './components/Navbar';
+import VoiceConsult from './components/VoiceConsult';
 import './App.css';
 
 function App() {
@@ -24,9 +25,12 @@ function App() {
             <Route path="/profile/posts" element={<UserPosts />} />
           </Routes>
         </main>
+        {/* Global floating AI voice call button */}
+        <VoiceConsult />
       </div>
     </Router>
   );
 }
 
 export default App;
+

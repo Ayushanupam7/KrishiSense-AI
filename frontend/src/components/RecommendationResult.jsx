@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import PricePredictor from './PricePredictor';
+import CropProfitChart from './CropProfitChart';
+import CropCalendar from './CropCalendar';
 import './RecommendationResult.css';
 
 // Client-side fallback: derive risk breakdown from known crop metadata
@@ -295,6 +297,14 @@ const RecommendationResult = ({ data }) => {
         </div>
       </div>
       
+      <CropProfitChart
+        recommendedCrop={data.recommended_crop}
+        alternativeCrops={data.alternative_crops}
+        estimatedProfit={data.estimated_profit}
+      />
+
+      <CropCalendar crop={data.recommended_crop} />
+
       <h3 style={{ marginTop: '30px', marginBottom: '15px' }}>📈 {t('anl_finance')}</h3>
       <PricePredictor defaultCrop={data.recommended_crop} />
 

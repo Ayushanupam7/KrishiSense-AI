@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { HiSearch, HiTrendingUp, HiLocationMarker, HiCalendar } from 'react-icons/hi';
+import { HiSearch, HiTrendingUp, HiLocationMarker, HiCalendar, HiArrowUp, HiArrowDown, HiLightningBolt } from 'react-icons/hi';
 import { useTranslation } from 'react-i18next';
 import PricePredictor from '../components/PricePredictor';
 import './Market.css';
@@ -166,6 +166,38 @@ const Market = () => {
                 state={userRegion} 
                 district={district !== 'All Cities' ? district : null} 
             />
+
+            {/* Top Movers Strip */}
+            {!loading && prices.length > 0 && (() => {
+                const sorted = [...prices].sort((a, b) => b.price - a.price);
+                const top5 = sorted.slice(0, 5);
+                const bottom3 = [...prices].sort((a, b) => a.price - b.price).slice(0, 3);
+                return (
+                    <div className="top-movers-strip">
+                        <div className="movers-label">
+                            <HiLightningBolt />
+                            <span>TODAY'S TOP MOVERS</span>
+                        </div>
+                        <div className="movers-scroll">
+                            {top5.map((m, i) => (
+                                <div key={`top-${i}`} className="mover-chip mover-up">
+                                    <span className="mover-crop">{m.commodity}</span>
+                                    <span className="mover-price">₹{m.price.toLocaleString('en-IN')}</span>
+                                    <HiArrowUp className="mover-arrow up" />
+                                </div>
+                            ))}
+                            <div className="movers-divider"></div>
+                            {bottom3.map((m, i) => (
+                                <div key={`bot-${i}`} className="mover-chip mover-down">
+                                    <span className="mover-crop">{m.commodity}</span>
+                                    <span className="mover-price">₹{m.price.toLocaleString('en-IN')}</span>
+                                    <HiArrowDown className="mover-arrow down" />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                );
+            })()}
 
             <div className="market-content">
                 {loading ? (

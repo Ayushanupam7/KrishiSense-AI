@@ -1,0 +1,72 @@
+.profit-chart-widget {
+    background: var(--bg-surface);
+    border-radius: 24px;
+    padding: 24px;
+    margin: 28px 0;
+    border: 1px solid rgba(46, 125, 50, 0.1);
+    box-shadow: 0 8px 30px rgba(46, 125, 50, 0.05);
+}
+
+.profit-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.profit-chart-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.profit-chart-unit {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: rgba(0,0,0,0.04);
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.profit-chart-legend {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.legend-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: rgba(0,0,0,0.03);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.legend-chip.main-chip {
+    background: #e8f5e9;
+    color: #1b5e20;
+}
+
+.chip-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}
+
+.green-dot { background: linear-gradient(135deg, #2e7d32, #69f0ae); }
+.blue-dot { background: linear-gradient(135deg, #1565c0, #90caf9); }
+
+.profit-canvas {
+    display: block;
+    width: 100%;
+}

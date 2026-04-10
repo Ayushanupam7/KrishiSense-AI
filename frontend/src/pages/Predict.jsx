@@ -5,6 +5,7 @@ import PricePredictor from '../components/PricePredictor';
 import './Home.css';
 
 const Predict = () => {
+  const [result, setResult] = useState(null);
   const [location, setLocation] = useState(null);
   const [liveWeather, setLiveWeather] = useState(null);
 

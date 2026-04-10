@@ -68,6 +68,7 @@ const Community = () => {
     const [selectedCrop, setSelectedCrop] = useState('All');
     const [isPostModalOpen, setIsPostModalOpen] = useState(false);
     const [newPostContent, setNewPostContent] = useState('');
+    const [newPostTitle, setNewPostTitle] = useState('');
     const [newPostCrop, setNewPostCrop] = useState('General');
     const [newPostImage, setNewPostImage] = useState('');
     const [expandedPostId, setExpandedPostId] = useState(null);

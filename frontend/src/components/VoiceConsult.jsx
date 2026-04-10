@@ -43,6 +43,7 @@ export default function VoiceConsult() {
     const [callState, setCallState] = useState(CALL_STATE.IDLE);
     const [selectedLang, setSelectedLang] = useState(LANGUAGES[0]);
     const [transcript, setTranscript] = useState('');
+    const [error, setError] = useState('');
     const [callDuration, setCallDuration] = useState(0);
     const [conversationHistory, setConversationHistory] = useState([]);
 

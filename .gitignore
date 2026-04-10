@@ -31,6 +31,7 @@ ml_model/models/
 
 # firebase
 firebase_config.json
+krishisense-ai-firebase-adminsdk-fbsvc-a50a0c6cbb.json
 .firebase/
 .firebaserc
 

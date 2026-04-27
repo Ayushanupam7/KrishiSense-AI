@@ -14,11 +14,11 @@
 ## 🌟 Overview  
 
 **KrishiSense AI** is an AI-powered decision support system designed to help farmers:  
-- 🌱 Choose the **best crop**  
-- 💰 Maximize **profitability**  
-- 📊 Make **data-driven decisions**  
+- 🌱 Choose the best crop  
+- 💰 Maximize profitability  
+- 📊 Make data-driven decisions  
 
-It transforms **soil, climate, and market data** into actionable insights — bringing AI directly to the roots of India 🇮🇳
+It transforms **soil, climate, and market data** into actionable insights — bringing AI directly to the roots of India 🇮🇳  
 
 ---
 
@@ -36,11 +36,10 @@ It transforms **soil, climate, and market data** into actionable insights — br
 
 ### 📱 Farmer Community  
 - Social dashboard for farmers  
-- Share posts, insights & experiences  
+- Share insights & posts  
 
 ### 🔍 Transparent AI (Glass Box)  
-Step-by-step output:  
-**Soil → Climate → Market → Final Decision**
+**Soil → Climate → Market → Final Decision**  
 
 ### 🎨 Premium UI  
 - Glassmorphism design  
@@ -58,13 +57,15 @@ Step-by-step output:
 
 ```mermaid
 graph TD
-    A[User Input] --> B[Language Processing]
+    A[User Input: React UI / Voice / Sensors] --> B[Language Processing]
     B --> C[FastAPI Backend]
     C --> D[Random Forest Model]
     D --> E[Soil Analysis]
     D --> F[Weather API]
     D --> G[Market Data]
-    E & F & G --> H[Risk Filtering]
+    E --> H[Decision Engine]
+    F --> H
+    G --> H
     H --> I[Final Recommendation]
     I --> J[Frontend Output]
 💻 Tech Stack
@@ -98,7 +99,6 @@ market
 
 
 ⚠️ If confidence is low → Safety Fallback Triggered
-(Prevents risky crop suggestions)
 
 🚀 Getting Started
 🔧 Backend
@@ -133,26 +133,3 @@ Vipul Pradesi
 📜 License
 
 MIT License © 2026
-
-⭐ If you like this project, give it a star!
-
-
----
-
-## 🔥 Extra Suggestions (High Impact)
-
-- Add **screenshots/GIFs** → increases impact by 10x  
-- Add **Live Demo link** (very important for recruiters)  
-- Add **Architecture image** (instead of only mermaid)  
-- Add **“Future Scope” section**  
-
----
-
-## 💡 About your Git error (quick recap)
-After adding this README, run:
-
-```bash
-git add .
-git commit -m "Updated README"
-git pull origin main --allow-unrelated-histories
-git push origin main

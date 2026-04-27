@@ -63,9 +63,7 @@ graph TD
     D --> E[Soil Analysis]
     D --> F[Weather API]
     D --> G[Market Data]
-    E --> H[Decision Engine]
-    F --> H
-    G --> H
+    E & F & G --> H[Risk Filtering]
     H --> I[Final Recommendation]
     I --> J[Frontend Output]
 💻 Tech Stack

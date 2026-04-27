@@ -1,71 +1,26 @@
-# 🌾 KrishiSense AI  
-### Smart Data-Driven Farming Platform  
+# 🌾 KrishiSense AI
+### Smart Data-Driven Farming Platform
+🚀 **Developed for AIXplore Hackathon | TGPCET, Nagpur**
 
-🚀 Developed for **AIXplore Hackathon** | TGPCET, Nagpur  
-
-![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)
-![React](https://img.shields.io/badge/Frontend-React-blue?logo=react)
-![FastAPI](https://img.shields.io/badge/Backend-FastAPI-green?logo=fastapi)
-![ML](https://img.shields.io/badge/Model-RandomForest-orange)
-![License](https://img.shields.io/badge/License-MIT-yellow)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white) ![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat-square&logo=fastapi) ![ML](https://img.shields.io/badge/Machine_Learning-FF6F00?style=flat-square&logo=scikit-learn&logoColor=white)
 
 ---
 
-## 🌟 Problem Statement  
+## 🌟 Problem Statement
+Farmers often face significant hurdles that impact their livelihood:
+* ❌ **Incorrect crop selection** based on tradition rather than soil health.
+* ❌ **Unpredictable market prices** leading to financial loss.
+* ❌ **Lack of data-driven insights** regarding weather and irrigation.
+* ❌ **Limited access** to modern, localized technology.
 
-Farmers often struggle with:
-- ❌ Wrong crop selection  
-- ❌ Unpredictable market prices  
-- ❌ Lack of data-driven insights  
-- ❌ Limited access to modern technology  
+**👉 Result:** Low profitability and high risk for the farming community.
 
-👉 Result: Low profitability & high risk  
-
----
-
-## 💡 Solution  
-
-**KrishiSense AI** provides an intelligent decision support system that combines:  
-- Soil analysis 🌱  
-- Weather insights 🌦️  
-- Market intelligence 💰  
-
-➡️ To recommend the **most profitable and safe crop choices**  
+## 💡 Solution
+**KrishiSense AI** is an AI-powered platform that bridges the gap between raw agricultural data and actionable intelligence. By combining soil analysis, real-time weather, and market trends, we provide a holistic recommendation engine.
 
 ---
 
-## 🎯 Key Features  
-
-### 🤖 Intelligent Crop Recommendation  
-- Random Forest ML model  
-- Inputs: NPK, irrigation, weather  
-- Season-aware filtering (Kharif / Rabi)  
-
-### 💰 Market Intelligence  
-- Real-time mandi price insights  
-- Harvest cycle predictions  
-- Pan-India comparison  
-
-### 🔍 Transparent AI (Glass Box)  
-**Soil → Climate → Market → Final Recommendation**  
-
-### 📱 Farmer Community  
-- Social dashboard for farmers  
-- Share posts & experiences  
-
-### 🎨 Premium UI  
-- Glassmorphism design  
-- Dark mode 🌙  
-- Mobile-first  
-
-### 🌐 Accessibility  
-- Multi-language (Hindi, Marathi, English)  
-- Voice input 🎤  
-- Offline support  
-
----
-
-## 🏗️ System Architecture  
+## 🏗️ System Architecture
 
 ```mermaid
 graph TD
@@ -80,75 +35,86 @@ graph TD
     G --> H
     H --> I[Final Recommendation]
     I --> J[Frontend Output]
+```
 
+---
 
-🧠 Decision Logic
-FinalScore=S
-soil
-	​
+## 🎯 Key Features
 
-+C
-climate
-	​
+### 🤖 Intelligent Crop Recommendation
+* **Random Forest ML Model:** High-accuracy classification based on historical data.
+* **Inputs:** NPK levels, pH, rainfall, and temperature.
+* **Season-Aware:** Automatic filtering for **Kharif** and **Rabi** cycles.
 
-+W
-water
-	​
+### 💰 Market Intelligence
+* **Real-time Mandi Prices:** Integration with Agmarknet for live price insights.
+* **Harvest Prediction:** Estimates the best time to sell for maximum profit.
 
-+V
-season
-	​
+### 🔍 Transparent AI (Glass Box)
+* We don't just give a name; we show the "Why." The UI explains the link between **Soil → Climate → Market** for every recommendation.
 
-+P
-market
-	​
+### 🌐 Accessibility & UI
+* **Multi-language:** Support for Hindi, Marathi, and English.
+* **Premium Design:** Glassmorphism UI with Dark Mode support.
+* **Offline First:** Basic functionality remains accessible without a stable connection.
 
+---
 
-⚠️ Safety fallback triggers if model confidence is low
+## 🧠 Decision Logic
+The final output is calculated using a weighted multi-factor scoring system:
 
-💻 Tech Stack
-Layer	Technology
-Frontend	React.js, Context API, CSS
-Backend	FastAPI
-AI/ML	Scikit-learn (Random Forest)
-Database	Firebase
-APIs	OpenWeather, Agmarknet
-Features	Web Speech API, Offline Support
-🚀 Getting Started
-🔧 Backend
+$$Final\ Score = S_{soil} + C_{climate} + W_{water} + V_{season} + P_{market}$$
+
+> **Note:** If the model confidence falls below a specific threshold, a **Safety Fallback** is triggered to recommend traditional low-risk regional crops.
+
+---
+
+## 💻 Tech Stack
+
+| Layer | Technology |
+| :--- | :--- |
+| **Frontend** | React.js, Context API, CSS (Glassmorphism) |
+| **Backend** | FastAPI (Python) |
+| **AI/ML** | Scikit-learn (Random Forest) |
+| **Database** | Firebase |
+| **APIs** | OpenWeather, Agmarknet |
+| **Features** | Web Speech API, PWA (Offline Support) |
+
+---
+
+## 🚀 Getting Started
+
+### 🔧 Backend
+```bash
 cd backend
 pip install -r requirements.txt
 python main.py
-🎨 Frontend
+```
+
+### 🎨 Frontend
+```bash
 cd frontend
 npm install
 npm start
-🧠 Train Model
-cd ml_model
-python train_model.py
-📂 Project Structure
+```
+
+### 📂 Project Structure
+```text
 KrishiSense-AI/
-├── backend/
-├── frontend/
-├── ml_model/
-├── data/
+├── backend/      # FastAPI server & Logic
+├── frontend/     # React App & UI components
+├── ml_model/     # Training scripts & Pickle files
+├── data/         # Dataset for training
 └── README.md
-🎤 Hackathon Pitch
+```
 
-“KrishiSense AI transforms agricultural data into actionable intelligence.
-From soil to solution, we empower farmers to make smarter, safer, and more profitable decisions.”
+---
 
-👨‍💻 Team
-Ayush Anupam – AIML, 3rd Year
-Sanket Bhende – CSE, 2nd Year
-Avijeet Jha – CSE, 3rd Year
-Vipul Pradesi
-🔮 Future Scope
-📡 IoT sensor integration
-🤖 Advanced AI models (Deep Learning)
-📊 Predictive analytics dashboard
-🌍 Expansion to global markets
-📜 License
+## 📜 License
+This project is licensed under the **MIT License** © 2026. 
 
-MIT License © 2026
-
+**Team Members:**
+* **Ayush Anupam** – AIML, 3rd Year
+* **Sanket Bhende** – CSE, 2nd Year
+* **Avijeet Jha** – CSE, 3rd Year
+* **Vipul Pradesi**

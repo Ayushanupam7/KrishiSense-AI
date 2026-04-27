@@ -11,14 +11,26 @@
 
 ---
 
-## 🌟 Overview  
+## 🌟 Problem Statement  
 
-**KrishiSense AI** is an AI-powered decision support system designed to help farmers:  
-- 🌱 Choose the best crop  
-- 💰 Maximize profitability  
-- 📊 Make data-driven decisions  
+Farmers often struggle with:
+- ❌ Wrong crop selection  
+- ❌ Unpredictable market prices  
+- ❌ Lack of data-driven insights  
+- ❌ Limited access to modern technology  
 
-It transforms **soil, climate, and market data** into actionable insights — bringing AI directly to the roots of India 🇮🇳  
+👉 Result: Low profitability & high risk  
+
+---
+
+## 💡 Solution  
+
+**KrishiSense AI** provides an intelligent decision support system that combines:  
+- Soil analysis 🌱  
+- Weather insights 🌦️  
+- Market intelligence 💰  
+
+➡️ To recommend the **most profitable and safe crop choices**  
 
 ---
 
@@ -34,12 +46,12 @@ It transforms **soil, climate, and market data** into actionable insights — br
 - Harvest cycle predictions  
 - Pan-India comparison  
 
+### 🔍 Transparent AI (Glass Box)  
+**Soil → Climate → Market → Final Recommendation**  
+
 ### 📱 Farmer Community  
 - Social dashboard for farmers  
-- Share insights & posts  
-
-### 🔍 Transparent AI (Glass Box)  
-**Soil → Climate → Market → Final Decision**  
+- Share posts & experiences  
 
 ### 🎨 Premium UI  
 - Glassmorphism design  
@@ -47,20 +59,29 @@ It transforms **soil, climate, and market data** into actionable insights — br
 - Mobile-first  
 
 ### 🌐 Accessibility  
-- Multi-language: Hindi, Marathi, English  
+- Multi-language (Hindi, Marathi, English)  
 - Voice input 🎤  
 - Offline support  
 
 ---
 
-💻 Tech Stack
-Layer	Technology
-Frontend	React.js, Context API, CSS
-Backend	FastAPI
-AI/ML	Scikit-learn (Random Forest)
-Database	Firebase
-APIs	OpenWeather, Agmarknet
-Features	Speech API, Offline Caching
+## 🏗️ System Architecture  
+
+```mermaid
+graph TD
+    A[User Input] --> B[Language Processing]
+    B --> C[FastAPI Backend]
+    C --> D[Random Forest Model]
+    D --> E[Soil Data]
+    D --> F[Weather Data]
+    D --> G[Market Data]
+    E --> H[Decision Engine]
+    F --> H
+    G --> H
+    H --> I[Final Recommendation]
+    I --> J[Frontend Output]
+
+
 🧠 Decision Logic
 FinalScore=S
 soil
@@ -83,8 +104,16 @@ market
 	​
 
 
-⚠️ If confidence is low → Safety Fallback Triggered
+⚠️ Safety fallback triggers if model confidence is low
 
+💻 Tech Stack
+Layer	Technology
+Frontend	React.js, Context API, CSS
+Backend	FastAPI
+AI/ML	Scikit-learn (Random Forest)
+Database	Firebase
+APIs	OpenWeather, Agmarknet
+Features	Web Speech API, Offline Support
 🚀 Getting Started
 🔧 Backend
 cd backend
@@ -106,15 +135,20 @@ KrishiSense-AI/
 └── README.md
 🎤 Hackathon Pitch
 
-"KrishiSense AI converts agricultural data into smart decisions.
-By combining soil intelligence, climate insights, and market predictions,
-we empower farmers to farm smarter, safer, and more profitably."
+“KrishiSense AI transforms agricultural data into actionable intelligence.
+From soil to solution, we empower farmers to make smarter, safer, and more profitable decisions.”
 
 👨‍💻 Team
-Ayush Anupam (AIML, 3rd Year)
-Sanket Bhende (CSE, 2nd Year)
-Avijeet Jha (CSE, 3rd Year)
+Ayush Anupam – AIML, 3rd Year
+Sanket Bhende – CSE, 2nd Year
+Avijeet Jha – CSE, 3rd Year
 Vipul Pradesi
+🔮 Future Scope
+📡 IoT sensor integration
+🤖 Advanced AI models (Deep Learning)
+📊 Predictive analytics dashboard
+🌍 Expansion to global markets
 📜 License
 
 MIT License © 2026
+

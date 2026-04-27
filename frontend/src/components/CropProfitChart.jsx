@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import './CropProfitChart.css';
 
 // Pure Canvas horizontal bar chart — no Chart.js needed
@@ -6,14 +6,14 @@ const CropProfitChart = ({ recommendedCrop, alternativeCrops, estimatedProfit })
     const canvasRef = useRef(null);
 
     // Build dataset
-    const allCrops = [
+    const allCrops = useMemo(() => [
         { crop: recommendedCrop, profit: estimatedProfit || 0, isMain: true },
         ...(alternativeCrops || []).map(a => ({
             crop: a.crop,
             profit: a.estimated_profit || 0,
             isMain: false,
         })),
-    ].filter(c => c.profit > 0).sort((a, b) => b.profit - a.profit).slice(0, 5);
+    ].filter(c => c.profit > 0).sort((a, b) => b.profit - a.profit).slice(0, 5), [recommendedCrop, estimatedProfit, alternativeCrops]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -117,7 +117,7 @@ const CropProfitChart = ({ recommendedCrop, alternativeCrops, estimatedProfit })
         ctx.moveTo(padding.left, padding.top + chartH);
         ctx.lineTo(padding.left + chartW, padding.top + chartH);
         ctx.stroke();
-    }, [alternativeCrops, estimatedProfit, recommendedCrop]);
+    }, [allCrops]);
 
     if (allCrops.length < 2) return null;
 

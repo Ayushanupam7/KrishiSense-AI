@@ -53,19 +53,6 @@ It transforms **soil, climate, and market data** into actionable insights — br
 
 ---
 
-## 🏗️ System Architecture  
-
-```mermaid
-graph TD
-    A[User Input: React UI / Voice / Sensors] --> B[Language Processing]
-    B --> C[FastAPI Backend]
-    C --> D[Random Forest Model]
-    D --> E[Soil Analysis]
-    D --> F[Weather API]
-    D --> G[Market Data]
-    E & F & G --> H[Risk Filtering]
-    H --> I[Final Recommendation]
-    I --> J[Frontend Output]
 💻 Tech Stack
 Layer	Technology
 Frontend	React.js, Context API, CSS
